@@ -2,3 +2,4 @@ exp_id	model	cv_f1	vram_gb	time_min	status	notes
 EXP-00	TF-IDF+LinearSVC (baseline mirkoferretti)	0.773	0	2	keep	Score publico LB. C=1.0, class_weight=balanced, GroupKFold
 EXP-01	TF-IDF+LinearSVC local repro	0.748	0	2	discard	CV local difere do publico por distribuicao de test
 EXP-02	TF-IDF+LR(saga) ensemble	0.52	0	-	discard	LR saga lento e pior que SVC em alta dimensionalidade — descartar
+EXP-01b	TF-IDF+CalibratedSVC (C=0.5)	0.717	0	3	discard	CalibratedClassifierCV + C=0.5 pior que baseline. Remover calibracao.

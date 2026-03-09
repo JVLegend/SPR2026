@@ -1,0 +1,15 @@
+data/
+*.zip
+*.csv
+!experiments/results.tsv
+submissions/
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.pt
+*.bin
+*.safetensors
+runs/
+wandb/
+.ipynb_checkpoints/

@@ -130,10 +130,12 @@ proba_final = alpha * proba_bert + beta * proba_tfidf
 
 ---
 
-### EXP-06: Autoresearch Loop Overnight 🤖
+### EXP-06: Autoresearch Loop — Fase 1 (Overnight Base) 🤖
 
 **Ferramenta**: [karpathy/autoresearch](https://github.com/karpathy/autoresearch)
-**Objetivo**: Deixar o agente AI otimizar `train.py` overnight (~100 experimentos)
+**Objetivo**: Deixar o agente AI otimizar `train.py` overnight a partir do melhor resultado encontrado (~100 experimentos)
+**Pré-requisito**: Rodar após EXP-01, EXP-03 ou EXP-04 — usar o melhor `train.py` como ponto de partida
+
 **Configuração**:
 
 ```bash
@@ -143,7 +145,7 @@ cd autoresearch
 
 # Copiar nossos arquivos
 cp ../SPR2026/prepare.py .
-cp ../SPR2026/train.py .
+cp ../SPR2026/train.py .       # <-- usar o train.py do melhor exp até agora
 cp ../SPR2026/program.md .
 
 # Inicializar tracking
@@ -153,12 +155,169 @@ echo -e "commit\tcv_f1\tvram_gb\tstatus\tnotes" > results.tsv
 python autoresearch.py --branch autoresearch/spr2026 --budget 10
 ```
 
-**O que o agente pode explorar automaticamente**:
-- Arquiteturas de modelo
-- Learning rates, batch sizes, epochs
-- Combinações de loss functions
-- Data augmentation strategies
-- Ensemble weights
+**O que o agente explora automaticamente na Fase 1**:
+- Learning rates, warmup, weight decay
+- Focal loss gamma (0.5 → 3.0) e alpha por classe
+- Batch size e gradient accumulation
+- Dropout rates
+- Max token length (128, 256, 512)
+- Scheduler: linear vs cosine vs cosine_with_restarts
+
+---
+
+### EXP-06b: Autoresearch Loop — Fase 2 (Refinamento Inteligente) 🤖🔁
+
+**Objetivo**: Após a Fase 1, o agente analisa o histórico de `results.tsv`, identifica os padrões dos experimentos bem-sucedidos e propõe uma nova rodada de refinamento focada.
+
+**Como funciona**:
+
+```bash
+# 1. Após a Fase 1 terminar, checar os top-5 experimentos:
+sort -t$'\t' -k2 -rn results.tsv | head -6
+
+# 2. Atualizar o program.md com o aprendizado da Fase 1
+# (fazer isso manualmente ou deixar o agente fazer via prompt abaixo)
+
+# 3. Rodar Fase 2 com budget menor e foco em refinamento
+python autoresearch.py --branch autoresearch/spr2026-phase2 --budget 5
+```
+
+**Atualizar o `program.md` antes da Fase 2** com este template:
+
+```markdown
+## Resultados da Fase 1 (preencher antes de rodar Fase 2)
+
+Melhores configurações encontradas:
+- Melhor cv_f1: [X.XXX] — commit [hash]
+- LR ótimo: [valor]
+- Gamma focal loss ótimo: [valor]
+- Max length ótimo: [valor]
+
+## Foco da Fase 2
+
+Com base nos resultados acima, explorar:
+1. Variações finas ao redor do melhor LR (±20%)
+2. Combinações de data augmentation não testadas
+3. Arquiteturas de cabeça classificadora (linear vs MLP vs attention pooling)
+4. Label smoothing: 0.05, 0.1, 0.15
+5. Mixup de embeddings entre classes minoritárias
+```
+
+---
+
+### EXP-06c: Geração do Report de Melhorias 📄
+
+**Objetivo**: Após as Fases 1 e 2, gerar automaticamente um relatório estruturado com os aprendizados, salvar no GitHub, e manter os checkpoints localmente.
+
+**Script para gerar o report** (rodar na máquina do Raul após os loops):
+
+```python
+# generate_autoresearch_report.py
+import pandas as pd
+import json
+from datetime import datetime
+
+def generate_report(results_tsv="results.tsv", output_md="experiments/autoresearch_report.md"):
+    df = pd.read_csv(results_tsv, sep="\t")
+
+    top5 = df[df["status"] == "keep"].nlargest(5, "cv_f1")
+    discarded = df[df["status"] == "discard"]
+    crashed = df[df["status"] == "crash"]
+
+    report = f"""# Autoresearch Report — SPR2026
+Gerado em: {datetime.now().strftime('%Y-%m-%d %H:%M')}
+Total de experimentos: {len(df)}
+Experimentos bem-sucedidos (keep): {len(df[df['status']=='keep'])}
+Descartados: {len(discarded)}
+Crashes: {len(crashed)}
+
+---
+
+## Top 5 Experimentos
+
+{top5[['exp_id','model','cv_f1','vram_gb','time_min','notes']].to_markdown(index=False)}
+
+---
+
+## Melhor Configuração
+
+- **cv_f1**: {top5.iloc[0]['cv_f1']:.5f}
+- **Notas**: {top5.iloc[0]['notes']}
+- **Commit**: {top5.iloc[0].get('commit', 'N/A')}
+
+---
+
+## O Que Funcionou
+
+"""
+    # Extrair padrões dos experimentos keep vs discard
+    keep_notes = df[df['status']=='keep']['notes'].tolist()
+    discard_notes = df[df['status']=='discard']['notes'].tolist()
+
+    report += "### Padrões nos experimentos que melhoraram:\n"
+    for n in keep_notes[:10]:
+        report += f"- {n}\n"
+
+    report += "\n### Padrões nos experimentos descartados:\n"
+    for n in discard_notes[:10]:
+        report += f"- {n}\n"
+
+    report += f"""
+---
+
+## Próximos Passos Recomendados
+
+1. Submeter o melhor checkpoint para o Kaggle e verificar score público
+2. Rodar Fase 2 com foco nos hiperparâmetros do top-1
+3. Ensemble do top-3 e comparar com modelo único
+4. Investigar F1 por classe — onde ainda estamos perdendo?
+
+---
+
+## Checkpoints (ficam na máquina local)
+
+Os checkpoints dos top-5 experimentos estão em:
+`autoresearch/checkpoints/` — NÃO commitar no GitHub (arquivos grandes)
+
+Para compartilhar: usar `scp` ou Google Drive para transferir apenas o best_model.pt
+"""
+
+    with open(output_md, "w", encoding="utf-8") as f:
+        f.write(report)
+
+    print(f"Report salvo em: {output_md}")
+    return output_md
+
+if __name__ == "__main__":
+    generate_report()
+```
+
+**Após gerar o report, commitar apenas o markdown**:
+
+```bash
+# Na máquina do Raul — após rodar generate_autoresearch_report.py:
+cd ../SPR2026
+
+# Copiar o report gerado (só o .md, não os checkpoints)
+cp ../autoresearch/experiments/autoresearch_report.md experiments/
+
+# Commitar no GitHub
+git add experiments/autoresearch_report.md experiments/results.tsv
+git commit -m "autoresearch: phase1+2 report - best cv_f1=0.XXX"
+git push
+
+# Checkpoints ficam LOCALMENTE na máquina do Raul:
+# autoresearch/checkpoints/ — não subir (podem ter GB)
+```
+
+**O que vai para o GitHub** (leve):
+- `experiments/results.tsv` — tabela de todos os experimentos
+- `experiments/autoresearch_report.md` — relatório com análise e próximos passos
+
+**O que fica local** (pesado):
+- Checkpoints `.pt` / `.safetensors`
+- Cache do HuggingFace
+- Logs detalhados de treino
 
 ---
 

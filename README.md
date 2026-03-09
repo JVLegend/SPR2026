@@ -1,5 +1,15 @@
 # SPR 2026 — Mammography Report Classification
 
+## Time: RUMO AO TOPO
+
+| Membro | Papel |
+|---|---|
+| João Victor Dias | ML / NLP / Coordenação |
+| Dr. Gustavo Sakuno | Especialista Clínico / Radiologia |
+| Raul Primo | GPU / Engenharia / Infraestrutura |
+
+---
+
 **Competição**: [SPR 2026 Mammography Report Classification](https://www.kaggle.com/competitions/spr-2026-mammography-report-classification)
 **Task**: Prever categoria BI-RADS (0-6) a partir de laudos de mamografia em **Português**
 **Métrica**: Macro F1

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir E:GitHubSPR2026)",
+      "Bash(dir E:GitHubSPR2026data)",
+      "Bash(dir \"E:\\\\GitHub\\\\SPR2026\")",
+      "Bash(dir \"E:\\\\GitHub\\\\SPR2026\\\\data\")",
+      "Bash(nvidia-smi)",
+      "Bash(pip list:*)",
+      "Bash(findstr /i \"torch transformers scikit pandas numpy\")",
+      "Bash(findstr /i \"torch transform scikit pandas numpy\")",
+      "Bash(dir \"E:\\\\GitHub\\\\SPR2026\\\\experiments\")",
+      "Bash(python -c \"import torch; print\\(''Torch:'', torch.__version__\\); print\\(''CUDA:'', torch.cuda.is_available\\(\\)\\); print\\(''GPU:'', torch.cuda.get_device_name\\(0\\) if torch.cuda.is_available\\(\\) else ''N/A''\\); print\\(''VRAM:'', f''{torch.cuda.get_device_properties\\(0\\).total_memory/1e9:.1f} GB'' if torch.cuda.is_available\\(\\) else ''N/A''\\)\")",
+      "Bash(ls \"E:\\\\GitHub\\\\SPR2026\\\\experiments\"\" 2>&1 || mkdir \"E:GitHubSPR2026experiments \")",
+      "Bash(python -c \"import os; os.makedirs\\(''E:/GitHub/SPR2026/experiments'', exist_ok=True\\); print\\(''OK''\\)\")",
+      "Bash(cd /d E:GitHubSPR2026)",
+      "Bash(python -c \"from prepare import load_data; t,te=load_data\\(\\); print\\(''Train:'', t.shape, ''| Test:'', te.shape\\)\")",
+      "Bash(python -c \"import sys; sys.path.insert\\(0,''E:/GitHub/SPR2026''\\); os.chdir\\(''E:/GitHub/SPR2026''\\); from prepare import load_data; t,te=load_data\\(\\); print\\(''Train:'', t.shape, ''Test:'', te.shape\\)\")",
+      "Bash(python -c \"import sys, os; sys.path.insert\\(0,''E:/GitHub/SPR2026''\\); os.chdir\\(''E:/GitHub/SPR2026''\\); from prepare import load_data; t,te=load_data\\(\\); print\\(''Train:'', t.shape, ''Test:'', te.shape\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(python -c \"import os, signal; os.kill\\(41360, 9\\)\")"
+    ]
+  }
+}

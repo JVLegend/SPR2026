@@ -1,5 +1,18 @@
-exp_id	model	cv_f1	vram_gb	time_min	status	notes
-EXP-00	TF-IDF+LinearSVC (baseline mirkoferretti)	0.773	0	2	keep	Score publico LB. C=1.0, class_weight=balanced, GroupKFold
-EXP-01	TF-IDF+LinearSVC local repro	0.748	0	2	discard	CV local difere do publico por distribuicao de test
-EXP-02	TF-IDF+LR(saga) ensemble	0.52	0	-	discard	LR saga lento e pior que SVC em alta dimensionalidade — descartar
-EXP-01b	TF-IDF+CalibratedSVC (C=0.5)	0.717	0	3	discard	CalibratedClassifierCV + C=0.5 pior que baseline. Remover calibracao.
+exp_id	model	cv_f1	lb_score	vram_gb	time_min	status	notes
+EXP-00	TF-IDF+LinearSVC (baseline mirkoferretti)	0.773	0.773	0	2	keep	Score publico LB. C=1.0, class_weight=balanced, GroupKFold
+EXP-01	TF-IDF+LinearSVC local repro	0.748	-	0	2	discard	CV local difere do publico por distribuicao de test
+EXP-02	TF-IDF+LR(saga) ensemble	0.52	0.53317	0	-	discard	LR saga lento e pior que SVC em alta dimensionalidade
+EXP-01b	TF-IDF+CalibratedSVC (C=0.5)	0.717	-	0	3	discard	CalibratedClassifierCV + C=0.5 pior que baseline
+EXP-08	BERTimbau Base + Focal Loss	-	0.77784	T4	-	keep	BERTimbau base com focal loss gamma=2.0
+EXP-10	Pure BERT (4 transformers)	-	0.62250	T4	-	discard	Transformers sozinhos nao funcionam neste problema
+EXP-11	TF-IDF Turbo (5 modelos CPU)	-	0.76449	0	5	keep	SVC+Ridge+LR+2xLGB, multi-section TF-IDF
+EXP-12	Hybrid Stacking (BERT+TF-IDF)	-	0.76839	T4	-	keep	BERTimbau+mDeBERTa+SVC+LGB+LR stacking
+EXP-14	Two-Level Stacking (7 modelos+meta)	-	0.80328	0	-	keep	3 SVCs + 2 LGBs + LR + Ridge → LogReg meta-learner
+EXP-15	Multi-Seed Multi-C Optimized	-	0.79699	0	-	keep	5 seeds x 3 SVCs + 5 LGBs, Dirichlet weight search
+EXP-16	Enhanced Two-Level Stacking (9+meta)	-	0.77620	0	-	keep	9 modelos + meta-learner, mais modelos != melhor
+EXP-17	Creative Hierarchical+CatBoost+SVD	-	0.78362	0	-	keep	Hierarquica + CatBoost + SVD topics + centroid sim
+EXP-18	Classic ML Maximizado (9 modelos)	-	0.75889	0	-	keep	XGB+CatBoost+ExtraTrees+SMOTE, TF-IDF agressivo
+EXP-19	Light GPU Hybrid (BERT+TF-IDF)	-	0.74280	T4	-	discard	BERTimbau 3ep + SVC+LGB+CatBoost stacking
+EXP-24	Specialist Ensemble	-	0.81021	0	-	BEST	Specialist Ensemble - novo melhor score
+EXP-25	Label Cleaning (Conservative)	-	0.80473	0	-	keep	Label cleaning conservativo, segundo melhor
+EXP-26	Label Clean Bold	-	0.79928	0	-	keep	Label cleaning agressivo, pior que conservativo

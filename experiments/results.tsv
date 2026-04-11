@@ -16,3 +16,6 @@ EXP-19	Light GPU Hybrid (BERT+TF-IDF)	-	0.74280	T4	-	discard	BERTimbau 3ep + SVC
 EXP-24	Specialist Ensemble	-	0.81021	0	-	BEST	Specialist Ensemble - novo melhor score
 EXP-25	Label Cleaning (Conservative)	-	0.80473	0	-	keep	Label cleaning conservativo, segundo melhor
 EXP-26	Label Clean Bold	-	0.79928	0	-	keep	Label cleaning agressivo, pior que conservativo
+EXP-27	Label Clean Normal	-	0.77059	0	-	discard	EXP-24 + label clean conservativo + retrain TF-IDF. Retrain piora muito
+EXP-28	Bold Pseudo-Label	-	0.79206	0	-	discard	EXP-24 + pseudo-labeling + 9 modelos + label correction. Complexidade demais
+EXP-29	Data Augmentation	-	0.76186	0	-	discard	EXP-24 + synonym/shuffle/dropout augmentation. Augmentation prejudica TF-IDF

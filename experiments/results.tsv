@@ -19,3 +19,4 @@ EXP-26	Label Clean Bold	-	0.79928	0	-	keep	Label cleaning agressivo, pior que co
 EXP-27	Label Clean Normal	-	0.77059	0	-	discard	EXP-24 + label clean conservativo + retrain TF-IDF. Retrain piora muito
 EXP-28	Bold Pseudo-Label	-	0.79206	0	-	discard	EXP-24 + pseudo-labeling + 9 modelos + label correction. Complexidade demais
 EXP-29	Data Augmentation	-	0.76186	0	-	discard	EXP-24 + synonym/shuffle/dropout augmentation. Augmentation prejudica TF-IDF
+EXP-31	Threshold Refined	-	0.78157	0	-	discard	EXP-24 + 2-pass threshold + multi-ordering + guardrails v2. Threshold overfit

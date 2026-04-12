@@ -1,0 +1,13 @@
+{
+  "id": "jvlegend/exp34-deberta-blend",
+  "title": "EXP-34: DeBERTa Blend",
+  "code_file": "exp34-deberta-blend.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "model_sources": ["mohammedhamdan/mdeberta-v3-base/pyTorch/default/1"],
+  "keywords": ["gpu", "deberta", "classification"]
+}

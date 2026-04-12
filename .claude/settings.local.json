@@ -59,7 +59,8 @@
       "Bash(python3 -c \"from kaggle.api.kaggle_api_extended import KaggleApi; api = KaggleApi\\(\\); api.authenticate\\(\\); kernels = api.kernels_list\\(competition=''spr-2026-mammography-report-classification'', sort_by=''voteCount'', page_size=20\\); [print\\(f''{k.ref} | votes={k.totalVotes}''\\) for k in kernels]\")",
       "Bash(du -sh /Users/jv/Documents/GitHub/SPR2026/*)",
       "Bash(find /Users/jv/Documents/GitHub/SPR2026 -type f -not -path */.*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(kaggle models:*)"
     ]
   }
 }

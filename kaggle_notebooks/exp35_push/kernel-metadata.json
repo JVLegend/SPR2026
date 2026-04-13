@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-35-seed-variant",
+  "title": "EXP-35: Seed Variant",
+  "code_file": "exp35-seed-variant.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["cpu", "tfidf", "classification"]
+}

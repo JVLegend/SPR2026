@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-36-meta-c05",
+  "title": "EXP-36: Meta C=0.5",
+  "code_file": "exp36-meta-c05.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["cpu", "tfidf", "classification"]
+}

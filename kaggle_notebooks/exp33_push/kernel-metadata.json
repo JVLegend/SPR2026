@@ -1,5 +1,5 @@
 {
-  "id": "jvlegend/exp33-bert-blend",
+  "id": "jvlegend/exp-33-bert-blend",
   "title": "EXP-33: BERT Blend",
   "code_file": "exp33-bert-blend.ipynb",
   "language": "python",
@@ -7,7 +7,8 @@
   "is_private": true,
   "enable_gpu": true,
   "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
   "competition_sources": ["spr-2026-mammography-report-classification"],
-  "model_sources": ["caokhoihuynh/bert-base-portuguese-cased/pyTorch/default/1"],
+  "dataset_sources": ["cortese/bert-base-portuguese-cased"],
   "keywords": ["gpu", "bert", "classification"]
 }

@@ -60,7 +60,8 @@
       "Bash(du -sh /Users/jv/Documents/GitHub/SPR2026/*)",
       "Bash(find /Users/jv/Documents/GitHub/SPR2026 -type f -not -path */.*)",
       "Bash(python3:*)",
-      "Bash(kaggle models:*)"
+      "Bash(kaggle models:*)",
+      "Bash(kaggle datasets:*)"
     ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "id": "jvlegend/exp34-deberta-blend",
+  "id": "jvlegend/exp-34-deberta-blend",
   "title": "EXP-34: DeBERTa Blend",
   "code_file": "exp34-deberta-blend.ipynb",
   "language": "python",
@@ -7,7 +7,8 @@
   "is_private": true,
   "enable_gpu": true,
   "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
   "competition_sources": ["spr-2026-mammography-report-classification"],
-  "model_sources": ["mohammedhamdan/mdeberta-v3-base/pyTorch/default/1"],
-  "keywords": ["gpu", "deberta", "classification"]
+  "dataset_sources": ["cortese/mdeberta-v3-base"],
+  "keywords": ["gpu", "classification"]
 }

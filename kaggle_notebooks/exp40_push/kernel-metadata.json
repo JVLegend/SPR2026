@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-40-conservative-thr",
+  "title": "EXP-40: Conservative Thresholds",
+  "code_file": "exp40-conservative-thr.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["classification"]
+}

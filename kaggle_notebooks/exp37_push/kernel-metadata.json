@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-37-multiseed-avg",
+  "title": "EXP-37: Multi-Seed Average",
+  "code_file": "exp37-multiseed-avg.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["classification"]
+}

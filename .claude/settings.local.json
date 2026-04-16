@@ -61,7 +61,9 @@
       "Bash(find /Users/jv/Documents/GitHub/SPR2026 -type f -not -path */.*)",
       "Bash(python3:*)",
       "Bash(kaggle models:*)",
-      "Bash(kaggle datasets:*)"
+      "Bash(kaggle datasets:*)",
+      "Bash(export PATH=\"/Library/Frameworks/Python.framework/Versions/3.11/bin:$PATH\")",
+      "Read(//tmp/exp38_res/**)"
     ]
   }
 }

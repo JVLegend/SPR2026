@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-39-10fold",
+  "title": "EXP-39: 10-Fold CV",
+  "code_file": "exp39-10fold.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["classification"]
+}

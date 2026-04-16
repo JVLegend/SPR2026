@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-41-binary-detectors",
+  "title": "EXP-41: Binary Detectors",
+  "code_file": "exp41-binary-detectors.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["classification"]
+}

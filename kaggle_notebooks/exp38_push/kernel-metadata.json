@@ -1,0 +1,12 @@
+{
+  "id": "jvlegend/exp-38-no-guardrails",
+  "title": "EXP-38: No Guardrails",
+  "code_file": "exp38-no-guardrails.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["spr-2026-mammography-report-classification"],
+  "keywords": ["classification"]
+}

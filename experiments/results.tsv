@@ -20,3 +20,13 @@ EXP-27	Label Clean Normal	-	0.77059	0	-	discard	EXP-24 + label clean conservativ
 EXP-28	Bold Pseudo-Label	-	0.79206	0	-	discard	EXP-24 + pseudo-labeling + 9 modelos + label correction. Complexidade demais
 EXP-29	Data Augmentation	-	0.76186	0	-	discard	EXP-24 + synonym/shuffle/dropout augmentation. Augmentation prejudica TF-IDF
 EXP-31	Threshold Refined	-	0.78157	0	-	discard	EXP-24 + 2-pass threshold + multi-ordering + guardrails v2. Threshold overfit
+EXP-33	BERT Blend	0.7404	-	T4	-	discard	BERTimbau OOF=0.65 puxou ensemble pra baixo. GPU nao vale
+EXP-34	DeBERTa Blend	0.7539	-	T4	-	discard	mDeBERTa loss=NaN (fp16). GPU nao funciona com datasets do Kaggle
+EXP-35	Seed Variant (seed=7)	0.7487	0.78476	0	-	keep	EXP-24 identico mas random_state=7. Variabilidade de score
+EXP-36	Meta C=0.5	0.7516	0.77115	0	-	discard	EXP-24 identico mas meta-learner C=0.5. Mais regularizacao piora
+EXP-37	Multi-Seed Average	-	0.76883	0	-	discard	3 seeds (42,7,123) media por L1 modelo. Media de seeds PIORA
+EXP-38	No Guardrails	-	0.79773	0	-	keep	EXP-24 sem guardrails. Guardrails adicionam ~0.012 (0.81 vs 0.80)
+EXP-39	10-Fold CV	0.7679	0.74274	0	-	discard	10 folds piora muito. 5-fold é melhor para este dataset
+EXP-40	Conservative Thresholds	-	0.78431	0	-	discard	Grid 0.05 + min improvement 0.003. Muito conservador piora
+EXP-41	Binary Detectors	-	0.78205	0	-	discard	EXP-24 + binary detectors 0/4/5/6 vs 2. Nao ajudou
+EXP-42	Hardcoded + Binary	-	0.72843	0	-	discard	Thresholds fixos + binary detectors. Hardcoded piora muito
